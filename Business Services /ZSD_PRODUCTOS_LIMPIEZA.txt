@@ -1,0 +1,4 @@
+@EndUserText.label: 'Servicio Productos de Limpieza'
+define service ZSD_PRODUCTOS_LIMPIEZA {
+  expose ZC_PRODUCTOS_LIMPIEZA as Productos;
+}
