@@ -1,44 +1,9 @@
-@AccessControl.authorizationCheck: #NOT_REQUIRED
-@EndUserText.label: 'Proyeccion de Productos de Limpieza'
-@Metadata.allowExtensions: true
-@Search.searchable: true
-define root view entity ZC_PRODUCTOS_LIMPIEZA
-  provider contract transactional_query
-  as projection on ZI_PRODUCTOS_LIMPIEZA
+projection;
+//strict ( 2 );
+
+define behavior for ZC_PRODUCTOS_LIMPIEZA //_behavior_name
 {
-  @UI.facet: [ { id:            'ProductInfo',
-                 purpose:       #STANDARD,
-                 type:          #IDENTIFICATION_REFERENCE,
-                 label:         'Información del Producto',
-                 position:      10 } ]
-
-  @UI.lineItem: [ { position: 10, label: 'Código de Producto', importance: #HIGH } ]
-  @UI.identification: [ { position: 10, label: 'Código de Producto' } ]
-  @Search.defaultSearchElement: true
-  key ProdId,
-
-  @UI.lineItem: [ { position: 20, label: 'Nombre Comercial', importance: #HIGH } ]
-  @UI.identification: [ { position: 20, label: 'Nombre Comercial' } ]
-  @Search.defaultSearchElement: true
-  Nombre,
-
-  @UI.lineItem: [ { position: 30, label: 'Marca', importance: #HIGH } ]
-  @UI.identification: [ { position: 30, label: 'Marca' } ]
-  @Search.defaultSearchElement: true
-  Marca,
-
-  @UI.lineItem: [ { position: 40, label: 'Precio Unitario', importance: #HIGH } ]
-  @UI.identification: [ { position: 40, label: 'Precio Unitario' } ]
-  Precio,
-
-@UI.fieldGroup: [ { qualifier: 'OcultarMoneda', position: 50 } ]
-@Consumption.valueHelpDefinition: [{ entity: { name: 'I_Currency', element: 'Currency' } }]
-Moneda,
-
-  @UI.lineItem: [ { position: 60, label: 'Stock Disponible', importance: #HIGH } ]
-  @UI.identification: [ { position: 60, label: 'Stock Disponible' } ]
-  Stock,
-
-  LocalLastChangedAt,
-  LastChangedAt
+  use create;
+  use update;
+  use delete;
 }
